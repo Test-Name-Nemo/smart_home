@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-
     'measurements',
 
 ]
@@ -80,8 +79,10 @@ WSGI_APPLICATION = 'smart_home.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'smart_sensor',
+        'PASSWORD': 'oiuy7698',
+        'HOST': '5433'
     }
 }
 
