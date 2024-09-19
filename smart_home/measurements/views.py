@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from .models import Sensor, Measurement
 from .serializers import SensorSerializer, MeasurementSerializer
 from .serializers import SensorDetailSerializer
-from psycopg2 import OperationalError
+from psycopg2 import OperationalError # type: ignore
 
 
 class CreateSensorView(ListCreateAPIView):
@@ -35,11 +35,10 @@ class CreateMeasurementView(CreateAPIView):
 
     def create_measurement(self, request):
         try:
-            sensor = request.POST.get('sensor')
+            sensor_id = request.POST.get('sensor')
             temperature = request.POST.get('temperature')
-            image = request.POST.get('image')
-            MeasurementSerializer(sensor=sensor, temperature=temperature,
-                                  image=image).save()
+            MeasurementSerializer(sensor=sensor_id,
+                                  temperature=temperature).save()
             return Response({'status': 'Измерение успешно добавлено'})
         except OperationalError as e:
             return Response({'status': f'Произошла ошибка {e}'})
