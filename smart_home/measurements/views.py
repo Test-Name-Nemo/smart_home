@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from .models import Sensor, Measurement
 from .serializers import SensorSerializer, MeasurementSerializer
 from .serializers import SensorDetailSerializer
-from psycopg2 import OperationalError # type: ignore
+from psycopg2 import OperationalError  # type: ignore
 
 
 class CreateSensorView(ListCreateAPIView):
